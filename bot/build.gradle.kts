@@ -1,5 +1,8 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     kotlin("jvm") version "1.5.31"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
     java
 }
 
@@ -8,12 +11,38 @@ version = "1.0"
 
 repositories {
     mavenCentral()
+    maven("https://maven.dimensional.fun/snapshots")
+    maven("https://oss.sonatype.org/content/repositories/snapshots/")
 }
 
 dependencies {
+    // Kotlin standard stuff
+    implementation(kotlin("stdlib"))
+    implementation("org.slf4j:slf4j-simple:1.7.29")
+    implementation("io.github.microutils:kotlin-logging:1.12.5")
 
+    // Discord
+    implementation("gg.mixtape:flight:2.5-RC")
+    implementation("net.dv8tion:JDA:5.0.0-alpha.3") {
+        exclude("club.minnced","opus-java")
+    }
+    implementation("com.sksamuel.hoplite:hoplite-core:1.4.16")
+    implementation("com.sksamuel.hoplite:hoplite-toml:1.4.16")
+
+    // Database
+    val exposedVersion = "0.37.3"
+    implementation("org.postgresql:postgresql:9.3-1100-jdbc4")
+    implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
 }
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "16"
+}
+
+tasks.withType<ShadowJar> {
+    archiveFileName.set("discord-bot-$version-with-deps.jar")
+    manifest {
+        attributes(mapOf("Main-Class" to "gay.vaskel.bot.MainKt"))
+    }
 }
