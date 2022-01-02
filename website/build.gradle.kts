@@ -20,6 +20,8 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":shared"))
+
     implementation("io.ktor:ktor-server-core:$ktor_version")
     implementation("io.ktor:ktor-serialization:$ktor_version")
     implementation("io.ktor:ktor-velocity:$ktor_version")

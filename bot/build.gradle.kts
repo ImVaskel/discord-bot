@@ -16,6 +16,9 @@ repositories {
 }
 
 dependencies {
+    // Shared things between modules
+    implementation(project(":shared"))
+
     // Kotlin standard stuff
     implementation(kotlin("stdlib"))
     implementation("org.slf4j:slf4j-simple:1.7.29")
