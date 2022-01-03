@@ -15,7 +15,10 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
 
-    // Kotlin standard stuff
+
+    implementation("com.sksamuel.hoplite:hoplite-core:1.4.16")
+
+    // Kotlin standard stufs
     implementation(kotlin("stdlib"))
 }
 

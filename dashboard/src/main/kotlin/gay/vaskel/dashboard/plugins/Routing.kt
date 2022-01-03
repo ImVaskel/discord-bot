@@ -1,4 +1,4 @@
-package gay.vaskel.plugins
+package gay.vaskel.dashboard.plugins
 
 import io.ktor.routing.*
 import io.ktor.http.*

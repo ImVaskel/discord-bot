@@ -1,12 +1,10 @@
-package gay.vaskel.plugins
-
-import io.ktor.velocity.*
-import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-import org.apache.velocity.runtime.RuntimeConstants
+package gay.vaskel.dashboard.plugins
 
 import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
+import io.ktor.routing.*
+import io.ktor.velocity.*
+import org.apache.velocity.runtime.RuntimeConstants
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
 
 fun Application.configureTemplating() {
     install(Velocity) {

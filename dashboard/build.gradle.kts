@@ -12,7 +12,7 @@ plugins {
 group = "gay.vaskel"
 version = "0.0.1"
 application {
-    mainClass.set("gay.vaskel.ApplicationKt")
+    mainClass.set("gay.vaskel.dashboard.ApplicationKt")
 }
 
 repositories {
@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":shared"))
+    implementation(project(":common"))
 
     implementation("io.ktor:ktor-server-core:$ktor_version")
     implementation("io.ktor:ktor-serialization:$ktor_version")

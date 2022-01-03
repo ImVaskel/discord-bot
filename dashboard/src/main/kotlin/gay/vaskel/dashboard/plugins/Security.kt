@@ -1,4 +1,4 @@
-package gay.vaskel.plugins
+package gay.vaskel.dashboard.plugins
 
 import io.ktor.auth.*
 import io.ktor.util.*
@@ -10,6 +10,7 @@ import io.ktor.sessions.*
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.request.*
+import io.ktor.routing.*
 
 fun Application.configureSecurity() {
     

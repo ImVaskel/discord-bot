@@ -1,5 +1,4 @@
 rootProject.name = "discord-bot"
 include (
-    "bot", "shared", "website"
+    "bot", "common", "dashboard"
 )
-include("bot")

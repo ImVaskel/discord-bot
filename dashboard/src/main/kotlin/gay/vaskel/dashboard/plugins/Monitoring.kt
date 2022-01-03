@@ -1,4 +1,4 @@
-package gay.vaskel.plugins
+package gay.vaskel.dashboard.plugins
 
 import io.ktor.features.*
 import io.micrometer.prometheus.*
@@ -7,6 +7,7 @@ import org.slf4j.event.*
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.request.*
+import io.ktor.routing.*
 
 fun Application.configureMonitoring() {
     val appMicrometerRegistry = PrometheusMeterRegistry(PrometheusConfig.DEFAULT)

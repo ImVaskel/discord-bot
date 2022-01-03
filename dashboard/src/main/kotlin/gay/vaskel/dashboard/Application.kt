@@ -1,8 +1,8 @@
-package gay.vaskel
+package gay.vaskel.dashboard
 
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import gay.vaskel.plugins.*
+import gay.vaskel.dashboard.plugins.*
 
 fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
