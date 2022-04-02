@@ -2,12 +2,14 @@ package gay.vaskel.bot
 
 import gay.vaskel.bot.handlers.PrefixProvider
 import gay.vaskel.bot.utils.Configuration
+import io.javalin.Javalin
 import me.devoxin.flight.api.events.*
 import me.devoxin.flight.internal.utils.Flight
 import me.devoxin.flight.internal.utils.on
 import mixtape.commons.extensions.JDA
 import mixtape.commons.extensions.intents
 import mu.KotlinLogging
+import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import org.jetbrains.exposed.sql.Database
@@ -51,12 +53,27 @@ fun main() {
 
     val JDA = JDA(Configuration.config.discord.token) {
         addEventListeners(flight)
-        intents += GatewayIntent.GUILD_MEMBERS
         setMemberCachePolicy(MemberCachePolicy.ALL)
+        enableIntents(GatewayIntent.getIntents(JDABuilder.GUILD_SUBSCRIPTIONS))
     }
 
-    /*val app = Javalin.create().start(Configuration.config.interop.port)
-    app.get("/members/count") { ctx ->
-        ctx.result("${JDA.userCache.count()}")
-    }*/
+    logger.info {
+        JDA.gatewayIntents
+    }
+
+    val app = Javalin.create().start(Configuration.config.interop.port)
+    app.get("/mutual/{user}") { ctx ->
+
+        val id = ctx.pathParam("user")
+        val guilds = mutableListOf<String>()
+
+        for (guild in JDA.guildCache) {
+            if (guild.getMemberById(id) != null) {
+                guilds.add(guild.id)
+            }
+        }
+
+        ctx.json(guilds)
+
+    }
 }

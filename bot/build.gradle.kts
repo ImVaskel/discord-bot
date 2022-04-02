@@ -34,7 +34,7 @@ dependencies {
     }
 
     implementation("com.sksamuel.hoplite:hoplite-core:1.4.16")
-    implementation("com.sksamuel.hoplite:hoplite-toml:1.4.16")
+    implementation("com.sksamuel.hoplite:hoplite-yaml:1.4.16")
 
     // Database
     val exposedVersion = "0.37.3"

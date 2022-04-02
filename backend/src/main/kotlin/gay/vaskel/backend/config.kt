@@ -1,4 +1,4 @@
-package gay.vaskel.bot.utils
+package gay.vaskel.backend
 
 import com.sksamuel.hoplite.ConfigLoader
 import gay.vaskel.common.models.Config

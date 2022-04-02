@@ -16,7 +16,8 @@ data class Discord(
     val prefix: String,
     val owner_ids: List<Long>,
     val id: Long,
-    val secret: String
+    val secret: String,
+    val invite_url: String
 )
 
 data class Database(
